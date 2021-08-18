@@ -47,12 +47,11 @@ const rows = [
 export const DataTable = () => {
     return(
         <div style={{ backgroundColor: 'white', borderRadius: '5px', height: 400, width: '100%'}}>
-        <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={rows.length}
-        checkboxSelection
-        disableSelectionOnClick />
-    </div>
-    )
-}
+            <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={rows.length}
+            checkboxSelection
+            disableSelectionOnClick />
+        </div>
+    )}

@@ -49,10 +49,9 @@ const useStyles = makeStyles ({
         fontFamily: "'Kaushan Script', serif",
     },
     main: {
-        backgroundImage: `url(${bike_trail})`,
+        background: `url(${bike_trail})`,
         width: '100%',
         height: '100%',
-        opacity: '0.8',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -60,12 +59,19 @@ const useStyles = makeStyles ({
     },
     main_text:{
         textAlign: 'center',
+        verticalAlign: 'middle',
         position: 'relative',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         fontFamily: "'Lato', sans-serif",
         color: 'black'
+    },
+    main_scrim:{
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundSize: 'cover',
+        width: '100%',
+        height: '100%',
     },
 });
 
@@ -98,12 +104,13 @@ export const Home = (props:Props) => {
                 </div>
             </nav>
             <main className={classes.main}>
-                <div className={classes.main_text}>
+                <div className={classes.main_scrim}>
+                    <div className={classes.main_text}>
                     <h1 className={classes.title_text}>{ props.title }</h1>
                     <p>Bikes are good for you.</p>
                     <Button variant="contained">Click Me</Button>
+                    </div>
                 </div>
             </main>
         </div>
-    )
-}
+    )};
