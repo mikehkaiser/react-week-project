@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Home, SignIn, Dashboard } from './components';
+import { Home, SignIn, Dashboard, DataTable } from './components';
 import './styles.css';
 import reportWebVitals from './reportWebVitals';
 // import from react-router-dom, which was installed in terminal
@@ -11,17 +11,18 @@ ReactDOM.render(
     <Router>
       <Switch>
 
-        <Route path='/'>
+        <Route exact path='/'>
           <Home title={'Ride ur bike'} />
         </Route>
 
         <Route path='/dashboard'>
-          <Dashboard></Dashboard>
+          <Dashboard />
         </Route>
 
         <Route path='/signin'>
-          <SignIn></SignIn>
+          <SignIn />
         </Route>
+
       </Switch>
     </Router>
   </React.StrictMode>,

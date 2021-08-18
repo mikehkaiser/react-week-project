@@ -2,9 +2,11 @@ import React from 'react';
 // importing new styles codes
 import { makeStyles} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import bike_wall_art from '../../assets/images/bike-wall-art.jpg';
+// import bike_wall_art from '../../assets/images/bike-wall-art.jpg';
 import bike_trail from '../../assets/images/bike-trail.jpg';
 import { Link } from 'react-router-dom';
+
+
 
 // makeStyles code
 const useStyles = makeStyles ({
@@ -17,6 +19,7 @@ const useStyles = makeStyles ({
         backgroundColor: 'black',
         justifyContent: 'space-between',
         alignItems: 'center',
+        boxShadow: '0 2px 5px rgb(0 0 0 / 100%)',
         fontFamily: "'Lato', sans-serif",
     },
     logo:{
@@ -62,12 +65,13 @@ const useStyles = makeStyles ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         fontFamily: "'Lato', sans-serif",
-    }
-})
+        color: 'black'
+    },
+});
 
 interface Props{
     title: string;
-}
+};
 
 export const Home = (props:Props) => {
     //new classes variable
