@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { DataTable } from '../../components'
+import { DataTable, BikeForm } from '../../components';
 import { Drawer as MUIDrawer,
     ListItem,
     List, 
@@ -14,7 +14,12 @@ import { Drawer as MUIDrawer,
     IconButton,
     Typography,
     Divider,
-    Button
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -136,12 +141,19 @@ export const Dashboard = withRouter(( props:DashProps) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false)
     
     const handleDrawerOpen = () =>{
         setOpen(true);
     };
     const handleDrawerClose = () =>{
         setOpen(false);
+    };
+    const handleDialogClickOpen = () =>{
+        setDialogOpen(true);
+    };
+    const handleDialogClickClose = () =>{
+        setDialogOpen(false);
     };
 
     const itemsList = [
@@ -175,7 +187,18 @@ export const Dashboard = withRouter(( props:DashProps) => {
                 <Typography variant="h6" noWrap>
                     Dashboard
                 </Typography>
-                <Button className={classes.toolbar_button}>Build a Bike</Button>
+                <Button className={classes.toolbar_button} onClick={handleDialogClickOpen}>Build a Bike</Button>
+                <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Add a New Bike</DialogTitle>
+                    <DialogContent>
+                        <BikeForm />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDialogClickClose} color="primary">Cancel</Button>
+                        <Button onClick={handleDialogClickClose} color="primary">Done</Button>
+                    </DialogActions>
+                </Dialog>
+                
                 </Toolbar>
             </AppBar>
             <MUIDrawer

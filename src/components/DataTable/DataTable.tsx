@@ -1,57 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
+import { serverCalls } from '../../api';
+import { useGetData } from '../../custom-hooks';
+import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
+import { BikeForm } from '../../components/BikeForm';
+import { string } from 'yargs';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 100 },
-    {
-        field: 'model',
-        headerName: 'Model',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'manufacturer',
-        headerName: 'Manufacturer',
-        width: 200,
-        editable: true,
-    },
-    {
-        field: 'year',
-        headerName: 'Year',
-        type: 'date',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'category',
-        headerName: 'Category',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'frameMaterial',
-        headerName: 'Frame Material',
-        width: 200,
-        editable: true,
-    },
+    { field: 'model', headerName: 'Model', width: 150, editable: true },
+    { field: 'manufacturer', headerName: 'Manufacturer', width: 200, editable: true },
+    { field: 'year', headerName: 'Year', type: 'date', width: 150, editable: true },
+    { field: 'size', headerName: 'Size', width: 150, editable: true },
+    { field: 'category', headerName: 'Category', width: 150, editable: true },
+    { field: 'frameMaterial', headerName: 'Frame Material', width: 200, editable: true },
 ];
 
-const rows = [
-    { id: 1, model: 'MCD', manufacturer: 'Black Mountain Cycles', year: 2018, category: 'cyclocross', frameMaterial: 'steel'},
-    { id: 2, model: 'Romanceur', manufacturer: 'Crust' , year: 2016, category: 'rando', frameMaterial: 'steel'},
-    { id: 3, model: 'Roadeo', manufacturer: 'Rivendell' , year: 2020, category: 'road', frameMaterial: 'steel'},
-    { id: 4, model: 'Tarmac', manufacturer: 'Specialized', year: 2019, category: 'road', frameMaterial: 'carbon'},
-    { id: 5, model: 'Electric Queen', manufacturer: 'All City' , year: 2016, category: 'mountain', frameMaterial: 'steel'},
-]
+
 
 export const DataTable = () => {
+    let {bikeData, getData} = useGetData();
+    let [open, setOpen] = useState(false);
+    let [gridData, setData] = useState({ });
+
+    let handleOpen = () =>{
+        setOpen(true)
+    };
+    let handleClose = () =>{
+        setOpen(false)
+    };
+
+
+    const rows = [
+        { id: 1, model: 'Electric Queen', manufacturer: 'All City' , year: 2016, size: 'Medium', category: 'mountain', frameMaterial: 'steel'},
+    ]
     return(
-        <div style={{ backgroundColor: 'white', borderRadius: '5px', height: 400, width: '100%'}}>
+        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8', borderRadius: '5px', height: 400, width: '100%'}}>
             <DataGrid
-            rows={rows}
+            rows={bikeData}
             columns={columns}
-            pageSize={rows.length}
+            pageSize={7}
             checkboxSelection
-            disableSelectionOnClick />
+            onSelectionModelChange = {id => setData(id[0])} />
+            {console.log(gridData)}
         </div>
     )}
