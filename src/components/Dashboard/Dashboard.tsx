@@ -229,13 +229,12 @@ export const Dashboard = withRouter(( props:DashProps) => {
             </List>
             </MUIDrawer>
             <div className={classes.contentDiv}>
-            <main
-            className={clsx(classes.content)}>
-            <div className={classes.drawerHeader} />
-    
-            <h1>Bikes coming soon</h1>
-            <DataTable />
-            </main>
+                <main className={clsx(classes.content)}>
+                <div className={classes.drawerHeader} />
+        
+                <h1>Your bikes:</h1>
+                <DataTable />
+                </main>
             </div>
         </div>
         )

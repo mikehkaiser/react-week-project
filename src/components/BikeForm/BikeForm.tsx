@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { 
     chooseModel, 
     chooseManufacturer, 
-    chooseYear,
+    //chooseYear,
     chooseSize, 
     chooseCategory, 
     chooseFrameMaterial } from '../../redux/slices/rootSlice';
@@ -18,16 +18,16 @@ import { useGetData } from '../../custom-hooks';
 interface BikeFormProps {
     id?:string;
     data?:{}
-}
+};
 
 interface BikeState {
     model: string;
     manufacturer: string;
-    year: Date;
+    //year: Date;
     size: string;
     category: string;
     frameMaterial: string;
-}
+};
 
 export const BikeForm = (props:BikeFormProps) =>{
     const dispatch = useDispatch();
@@ -42,18 +42,19 @@ export const BikeForm = (props:BikeFormProps) =>{
         if(props.id!){
             serverCalls.update(props.id!, data)
             console.log(`Updated:${data} for ${props.id}`)
-            window.location.reload()
             event.target.reset();
         } else {
             dispatch(chooseModel(data.model))
             dispatch(chooseManufacturer(data.model))
-            dispatch(chooseYear(data.year))
+            //dispatch(chooseYear(data.year))
             dispatch(chooseSize(data.size))
             dispatch(chooseCategory(data.category))
             dispatch(chooseFrameMaterial(data.frameMaterial))
-            serverCalls.create(store.getState())
-            window.location.reload()
+            serverCalls.create(data)
         }
+        
+        window.location.reload()
+
     }
 
     return (
@@ -67,10 +68,10 @@ export const BikeForm = (props:BikeFormProps) =>{
                     <label htmlFor="manufacturer">Manufacturer</label>
                     <Input {...register('manufacturer')} name="manufacturer" placeholder="Manufacturer" />
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor="year">Year Built</label>
                     <Input {...register('year')} name="year" placeholder="Year" />
-                </div>
+                </div> */}
                 <div>
                     <label htmlFor="size">Size</label>
                     <Input {...register('size')} name="size" placeholder="Size" />
@@ -83,6 +84,7 @@ export const BikeForm = (props:BikeFormProps) =>{
                     <label htmlFor="frameMaterial">Frame Material</label>
                     <Input {...register('frameMaterial')} name="frameMaterial" placeholder="Frame Material" />
                 </div>
+                <Button type='submit'>Submit</Button>
             </form>
         </div>
     )
