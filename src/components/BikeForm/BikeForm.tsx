@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { 
     chooseModel, 
     chooseManufacturer, 
-    //chooseYear,
     chooseSize, 
     chooseCategory, 
     chooseFrameMaterial } from '../../redux/slices/rootSlice';
@@ -23,7 +22,6 @@ interface BikeFormProps {
 interface BikeState {
     model: string;
     manufacturer: string;
-    //year: Date;
     size: string;
     category: string;
     frameMaterial: string;
@@ -46,13 +44,11 @@ export const BikeForm = (props:BikeFormProps) =>{
         } else {
             dispatch(chooseModel(data.model))
             dispatch(chooseManufacturer(data.model))
-            //dispatch(chooseYear(data.year))
             dispatch(chooseSize(data.size))
             dispatch(chooseCategory(data.category))
             dispatch(chooseFrameMaterial(data.frameMaterial))
             serverCalls.create(data)
         }
-        
         window.location.reload()
 
     }
@@ -68,10 +64,6 @@ export const BikeForm = (props:BikeFormProps) =>{
                     <label htmlFor="manufacturer">Manufacturer</label>
                     <Input {...register('manufacturer')} name="manufacturer" placeholder="Manufacturer" />
                 </div>
-                {/* <div>
-                    <label htmlFor="year">Year Built</label>
-                    <Input {...register('year')} name="year" placeholder="Year" />
-                </div> */}
                 <div>
                     <label htmlFor="size">Size</label>
                     <Input {...register('size')} name="size" placeholder="Size" />

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { DataGrid, GridColDef, GridRowModel, GridValueGetterParams } from '@material-ui/data-grid';
+import { DataGrid, GridColDef, GridRowModel, GridCellParams } from '@material-ui/data-grid';
 import { serverCalls } from '../../api';
 import { useGetData } from '../../custom-hooks';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
@@ -14,7 +14,6 @@ const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 100 },
     { field: 'model', headerName: 'Model', width: 180, editable: true },
     { field: 'manufacturer', headerName: 'Manufacturer', width: 180, editable: true },
-    //{ field: 'year', headerName: 'Year', type: 'date', width: 120, editable: true },
     { field: 'size', headerName: 'Size', width: 120, editable: true },
     { field: 'category', headerName: 'Category', width: 150, editable: true },
     { field: 'frameMaterial', headerName: 'Frame Material', width: 200, editable: true },

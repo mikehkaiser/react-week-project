@@ -108,7 +108,6 @@ export const Home = (props:Props) => {
                     <div className={classes.main_text}>
                     <h1 className={classes.title_text}>{ props.title }</h1>
                     <p>Bikes are good for you.</p>
-                    <Button variant="contained">Click Me</Button>
                     </div>
                 </div>
             </main>
